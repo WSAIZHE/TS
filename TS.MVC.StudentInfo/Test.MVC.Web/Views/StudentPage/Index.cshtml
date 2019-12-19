@@ -64,7 +64,6 @@
                     </tr>
                 </table>
                 <div class="pagebox" style="height:30px;" id="box"></div>
-
                 <script id="dataList" type="text/x-jquery-tmpl">
                     {{each  Data}}
                     <tr>
@@ -91,7 +90,7 @@
             MasterData: {},
             options: {
                 "url": "/StudentPage/QueryPageData",
-                "data": { "PageIndex": 0, "PageSize": 12 },
+                "data": { "PageIndex": 0, "PageSize":4},
                 "type": "post",
                 "datatype": "json"
             },
@@ -132,7 +131,8 @@
             _.ajaxData(_.options, function (result) {
                 _.render(result);
                 var setTotalCount = result.Total;
-                $('#box').paging({
+                alert(1);
+                $('#box').Paging({                    
                     initPageNo: 1, // 初始页码
                     totalPages: result.TotalPages, //总页数
                     totalCount: '合计' + setTotalCount + '条数据', // 条目总数
@@ -141,7 +141,7 @@
                     callback: function (page) {
                         //回调函数
                         //alert(page);
-                        _.options.data.PageIndex = page;
+                        _.options.data.PageIndex = Page;
                         _.ajaxData(_.options, function (result) {
                             _.render(result);
                         });
